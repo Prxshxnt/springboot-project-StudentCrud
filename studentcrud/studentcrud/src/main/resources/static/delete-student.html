@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Delete Student</title>
+</head>
+<body>
+    <h1>Delete Student</h1>
+
+    <form onsubmit="deleteStudent(event)">
+        <label>ID:</label>
+        <input type="number" id="id" required><br><br>
+
+        <button type="submit">Delete</button>
+    </form>
+
+    <script>
+        async function deleteStudent(event) {
+            event.preventDefault();
+
+            const id = document.getElementById("id").value;
+
+            await fetch(`/students/${id}`, {
+                method: "DELETE"
+            });
+
+            alert("Student deleted!");
+        }
+    </script>
+</body>
+</html>

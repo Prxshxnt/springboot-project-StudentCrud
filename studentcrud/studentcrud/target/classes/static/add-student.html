@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Add Student</title>
+</head>
+<body>
+    <h1>Add Student</h1>
+
+    <form onsubmit="addStudent(event)">
+        <label>Name:</label>
+        <input type="text" id="name" required><br><br>
+
+        <label>Email:</label>
+        <input type="email" id="email" required><br><br>
+
+        <button type="submit">Add Student</button>
+    </form>
+
+    <script>
+        async function addStudent(event) {
+            event.preventDefault();
+
+            const student = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value
+            };
+
+            await fetch("/students", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(student)
+            });
+
+            alert("Student added successfully!");
+        }
+    </script>
+</body>
+</html>

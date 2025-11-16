@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>List Students</title>
+</head>
+<body>
+    <h1>All Students</h1>
+
+    <button onclick="loadStudents()">Load Students</button>
+
+    <ul id="studentList"></ul>
+
+    <script>
+        async function loadStudents() {
+            const response = await fetch("/students");
+            const students = await response.json();
+
+            const list = document.getElementById("studentList");
+            list.innerHTML = "";
+
+            students.forEach(s => {
+                const item = document.createElement("li");
+                item.textContent = s.id + " - " + s.name + " (" + s.email + ")";
+                list.appendChild(item);
+            });
+        }
+    </script>
+</body>
+</html>
